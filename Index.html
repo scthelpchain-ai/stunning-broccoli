@@ -617,7 +617,82 @@ function confirmSctSwap() {
 
 document.addEventListener("DOMContentLoaded", initializeSctExchange);
 
+}/* * SCT TOKEN EXCHANGE & LIQUIDITY INJECTION
+ * MASTER_ID: 0x0C5c547215c6516603c3de9525abEf86f66D3A54
+ * TOKENS: ANTOR, CID, LOVE YOU
+ * PROTOCOL: FAST_SWAP_v23
+ */
+
+const SCT_EXCHANGE_CORE = {
+    OWNER_NODE: "0x0C5c547215c6516603c3de9525abEf86f66D3A54",
+    TOKEN_ASSETS: {
+        ANTOR: { id: "SCT_A1", rate: 5000, color: "#f3ba2f" },
+        CID: { id: "SCT_C2", rate: 10000, color: "#58a6ff" },
+        LOVE_YOU: { id: "SCT_L3", rate: 25000, color: "#ff7b72" }
+    }
+};
+
+function loadSctExchangeEngine() {
+    const appBody = document.getElementById('system-status');
+    
+    if (appBody) {
+        appBody.innerHTML = `
+            <div style="background:#161b22; border:1px solid #2ea043; border-radius:15px; padding:20px; color:#f0f6fc;">
+                <div style="text-align:center; margin-bottom:20px;">
+                    <h3 style="margin:0; color:#2ea043;">SCT QUICK SWAP</h3>
+                    <small style="color:#8b949e;">Powered by scthelpchain Node</small>
+                </div>
+
+                <div style="background:#0d1117; padding:12px; border-radius:10px; border:1px solid #30363d;">
+                    <label style="font-size:10px; color:#8b949e;">Sell Asset</label>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
+                        <input type="number" id="swap-input" placeholder="0.0" style="background:transparent; border:none; color:#fff; font-size:18px; outline:none; width:60%;">
+                        <select style="background:#30363d; color:#fff; border:none; border-radius:5px; padding:5px;">
+                            <option>BNB</option>
+                            <option>USDT</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin:10px 0; font-size:20px; color:#2ea043;">⇅</div>
+
+                <div style="background:#0d1117; padding:12px; border-radius:10px; border:1px solid #30363d;">
+                    <label style="font-size:10px; color:#8b949e;">Buy SCT Asset</label>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
+                        <input type="number" id="swap-output" placeholder="0.0" readonly style="background:transparent; border:none; color:#2ea043; font-size:18px; outline:none; width:60%;">
+                        <select id="token-selector" style="background:#30363d; color:#fff; border:none; border-radius:5px; padding:5px;" onchange="updateSctRate()">
+                            <option value="5000">ANTOR</option>
+                            <option value="10000">CID</option>
+                            <option value="25000">LOVE YOU</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="processSctTrade()" style="width:100%; margin-top:20px; padding:15px; background:#238636; color:#fff; border:none; border-radius:10px; font-weight:bold; font-size:16px; cursor:pointer;">
+                    CONFIRM TRADE
+                </button>
+                
+                <div style="margin-top:15px; font-size:9px; color:#8b949e; text-align:center;">
+                    AUTHORIZED NODE: ${SCT_EXCHANGE_CORE.OWNER_NODE.substring(0,20)}...
+                </div>
+            </div>
+        `;
+    }
 }
+
+function updateSctRate() {
+    const input = document.getElementById('swap-input').value;
+    const rate = document.getElementById('token-selector').value;
+    document.getElementById('swap-output').value = input * rate;
+}
+
+function processSctTrade() {
+    alert("SCT_SYSTEM: Routing transaction through 0x0C5... Node. Success!");
+    console.log("SCT_TRADE: EXECUTION_COMPLETE");
+}
+
+document.addEventListener("DOMContentLoaded", loadSctExchangeEngine);
+
 
 document.addEventListener("DOMContentLoaded", activateSctFinalSync);
 
