@@ -330,7 +330,105 @@ async function submitSctVerification() {
                     PUSH TO GITHUB REGISTRY
                 </button>
             </div>
+        </div><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SCT HELPCHAIN APP</title>
+    <style>
+        :root { --primary: #1f6feb; --success: #2ea043; --bg: #0d1117; --card: #161b22; --text: #f0f6fc; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* App Header */
+        .app-header { background: var(--card); padding: 20px; text-align: center; border-bottom: 1px solid #30363d; position: sticky; top: 0; z-index: 100; }
+        .app-header h1 { font-size: 18px; margin: 0; letter-spacing: 1px; color: var(--primary); text-transform: uppercase; }
+
+        /* Wallet Section */
+        .wallet-card { margin: 15px; background: linear-gradient(135deg, #1f6feb, #238636); padding: 20px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .wallet-card small { opacity: 0.8; font-size: 11px; }
+        .wallet-card .balance { font-size: 28px; font-weight: bold; margin: 5px 0; }
+        .wallet-card .address { font-family: monospace; font-size: 10px; background: rgba(0,0,0,0.2); padding: 5px; border-radius: 5px; display: inline-block; }
+
+        /* Token List */
+        .section-title { margin: 20px 15px 10px; font-size: 14px; color: #8b949e; text-transform: uppercase; }
+        .token-item { background: var(--card); margin: 0 15px 10px; padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #30363d; }
+        .token-info { display: flex; align-items: center; gap: 12px; }
+        .token-logo { width: 35px; height: 35px; background: #30363d; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; }
+        .token-meta b { display: block; font-size: 14px; }
+        .token-meta span { font-size: 10px; color: #8b949e; }
+        .token-value { text-align: right; font-weight: bold; color: var(--success); }
+
+        /* Navigation Bar */
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: var(--card); display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #30363d; }
+        .nav-item { font-size: 20px; cursor: pointer; opacity: 0.6; }
+        .nav-item.active { opacity: 1; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div class="app-header">
+        <h1>Scthelpchain App</h1>
+    </div>
+
+    <div class="wallet-card">
+        <small>Total SCT Assets</small>
+        <div class="balance">$34,500.00</div>
+        <div class="address">0x0C5c547215c6516603c3de9525abEf86f66D3A54</div>
+    </div>
+
+    <div class="section-title">Verified Tokens</div>
+
+    <div class="token-item">
+        <div class="token-info">
+            <div class="token-logo" style="color: #f3ba2f;">A</div>
+            <div class="token-meta">
+                <b>ANTOR TOKEN</b>
+                <span>Popular / GitHub Verified</span>
+            </div>
         </div>
+        <div class="token-value">1,000,000</div>
+    </div>
+
+    <div class="token-item">
+        <div class="token-info">
+            <div class="token-logo" style="color: #58a6ff;">C</div>
+            <div class="token-meta">
+                <b>CID TOKEN</b>
+                <span>Official SCT Asset</span>
+            </div>
+        </div>
+        <div class="token-value">500,000</div>
+    </div>
+
+    <div class="token-item">
+        <div class="token-info">
+            <div class="token-logo" style="color: #ff7b72;">L</div>
+            <div class="token-meta">
+                <b>LOVE YOU TOKEN</b>
+                <span>Charity Reward</span>
+            </div>
+        </div>
+        <div class="token-value">250,000</div>
+    </div>
+
+    <div style="height: 80px;"></div> <nav class="nav-bar">
+        <div class="nav-item active">🏠</div>
+        <div class="nav-item">💱</div>
+        <div class="nav-item">💳</div>
+        <div class="nav-item">👤</div>
+    </nav>
+
+    <script>
+        // Automatic Blockchain Sync
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("SCT_APP_CORE: INITIALIZED");
+            // Add your logic to fetch live balances from 0x0C5...
+        });
+    </script>
+</body>
+</html>
+
     `;
     
     console.log("SCT_LOG: VERIFICATION_REQUEST_SENT_TO_BSC_EXPLORER");
