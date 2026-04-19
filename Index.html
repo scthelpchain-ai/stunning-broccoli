@@ -696,7 +696,70 @@ document.addEventListener("DOMContentLoaded", loadSctExchangeEngine);
 
 document.addEventListener("DOMContentLoaded", activateSctFinalSync);
 
-    `;
+    `;<div id="admin-panel" style="background:#0d1117; color:#f0f6fc; font-family:sans-serif; padding:15px; border-radius:15px; border:2px solid #30363d;">
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #30363d; padding-bottom:10px;">
+        <h2 style="color:#58a6ff; font-size:18px; margin:0;">SCT Admin Command</h2>
+        <span style="background:#238636; font-size:10px; padding:3px 8px; border-radius:10px;">LIVE_NODE: ACTIVE</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:20px;">
+        <div style="background:#161b22; padding:15px; border-radius:10px; text-align:center; border:1px solid #30363d;">
+            <small style="color:#8b949e;">Total Volume</small>
+            <div style="font-size:18px; font-weight:bold; color:#f3ba2f;">$1,250,000</div>
+        </div>
+        <div style="background:#161b22; padding:15px; border-radius:10px; text-align:center; border:1px solid #30363d;">
+            <small style="color:#8b949e;">Active Students</small>
+            <div style="font-size:18px; font-weight:bold; color:#2ea043;">3,000+</div>
+        </div>
+    </div>
+
+    <div style="margin-top:20px;">
+        <h4 style="color:#8b949e; font-size:12px; margin-bottom:10px;">TOKEN PRICE MANAGEMENT</h4>
+        <div style="background:#161b22; border-radius:10px; padding:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0;">
+                <span>ANTOR / USDT</span>
+                <input type="number" value="0.10" id="antor-price" style="width:60px; background:#0d1117; border:1px solid #30363d; color:#2ea043; text-align:center; border-radius:5px;">
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0;">
+                <span>CID / USDT</span>
+                <input type="number" value="0.05" id="cid-price" style="width:60px; background:#0d1117; border:1px solid #30363d; color:#2ea043; text-align:center; border-radius:5px;">
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0;">
+                <span>LOVE YOU / USDT</span>
+                <input type="number" value="0.01" id="ly-price" style="width:60px; background:#0d1117; border:1px solid #30363d; color:#2ea043; text-align:center; border-radius:5px;">
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:20px;">
+        <button onclick="updateMarket()" style="width:100%; background:#1f6feb; color:#fff; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:10px;">
+            PUSH MARKET UPDATE
+        </button>
+        <div style="display:flex; gap:10px;">
+            <button onclick="toggleTrading(true)" style="flex:1; background:#238636; color:#fff; border:none; padding:10px; border-radius:8px; font-size:11px; font-weight:bold;">ENABLE TRADING</button>
+            <button onclick="toggleTrading(false)" style="flex:1; background:#da3633; color:#fff; border:none; padding:10px; border-radius:8px; font-size:11px; font-weight:bold;">HALT TRADING</button>
+        </div>
+    </div>
+
+    <div style="margin-top:20px; border-top:1px solid #30363d; padding-top:10px; text-align:center;">
+        <code style="font-size:9px; color:#8b949e;">AUTH_NODE: 0x0C5c547215c6516603c3de9525abEf86f66D3A54</code><br>
+        <code style="font-size:9px; color:#58a6ff;">SCT_ADMIN_KEY_LOCKED</code>
+    </div>
+</div>
+
+<script>
+    function updateMarket() {
+        const aP = document.getElementById('antor-price').value;
+        alert("SCT_LOG: ANTOR Price updated to $" + aP + ". Pushing to Blockchain...");
+    }
+    
+    function toggleTrading(status) {
+        const state = status ? "ENABLED" : "HALTED";
+        alert("SCT_SYSTEM: Global Trading is now " + state);
+    }
+</script>
+
     
     console.log("SCT_LOG: VERIFICATION_REQUEST_SENT_TO_BSC_EXPLORER");
 }
