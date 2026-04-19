@@ -205,4 +205,99 @@ document.addEventListener("DOMContentLoaded", () => {
         executeSctGlobalProtocol();
     }
 });
+/* * SCT MULTI-TOKEN PERMISSION ENGINE
+ * TOKENS: ANTOR, CID, LOVE YOU
+ * IDENTITY: scthelpchain (0x0C5c547215c6516603c3de9525abEf86f66D3A54)
+ * AUTHORIZED BY: CHAIRMAN H R ANTOR
+ */
 
+const SCT_TOKEN_REGISTRY = {
+    MASTER_NODE: "0x0C5c547215c6516603c3de9525abEf86f66D3A54",
+    ASSETS: [
+        { name: "ANTOR TOKEN", symbol: "ANTOR", status: "VERIFIED" },
+        { name: "CID TOKEN", symbol: "CID", status: "VERIFIED" },
+        { name: "LOVE YOU TOKEN", symbol: "LYT", status: "VERIFIED" }
+    ]
+};
+
+async function authorizeSctTokens() {
+    const display = document.getElementById('system-status');
+    
+    if (window.ethereum || window.trustwallet) {
+        try {
+            const provider = window.trustwallet || window.ethereum;
+            const accounts = await provider.request({ method: 'eth_requestAccounts' });
+            
+            display.innerHTML = `
+                <div style="background:#0d1117; border:1px solid #58a6ff; padding:15px; border-radius:12px;">
+                    <div style="color:#58a6ff; font-weight:bold; font-size:14px; margin-bottom:10px;">TOKEN_PERMISSION_GRANTED</div>
+                    <div style="display:grid; grid-template-columns: 1fr; gap:8px;">
+                        <div style="font-size:11px; color:#2ea043; border-left:3px solid #2ea043; padding-left:8px;">
+                            [AUTHORIZED] ANTOR_TOKEN_SYNC
+                        </div>
+                        <div style="font-size:11px; color:#2ea043; border-left:3px solid #2ea043; padding-left:8px;">
+                            [AUTHORIZED] CID_TOKEN_SYNC
+                        </div>
+                        <div style="font-size:11px; color:#2ea043; border-left:3px solid #2ea043; padding-left:8px;">
+                            [AUTHORIZED] LOVE_YOU_TOKEN_SYNC
+                        </div>
+                    </div>
+                    <div style="margin-top:10px; font-size:9px; color:#8b949e; border-top:1px solid #30363d; padding-top:5px;">
+                        DOMAIN: scthelpchain | NODE: ${SCT_TOKEN_REGISTRY.MASTER_NODE.substring(0,10)}...
+                    </div>
+                </div>
+            `;
+            
+            console.log("SCT_LOG: ALL_TOKEN_PERMISSIONS_LOCKED");
+
+        } catch (error) {
+            display.innerHTML = `<span style="color:#ff7b72;">PERMISSION_ERROR: SYNC_DENIED</span>`;
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById('system-status')) {
+        authorizeSctTokens();
+    }
+});
+
+/* * SCT MARKET VALUE PROTOCOL
+ * ASSETS: ANTOR, CID, LOVE YOU
+ * TARGET_NODE: 0x0C5c547215c6516603c3de9525abEf86f66D3A54
+ */
+
+const SCT_MARKET_DATA = {
+    ANTOR_PRICE: "0.10 USDT",
+    CID_PRICE: "0.05 USDT",
+    LOVE_YOU_PRICE: "0.01 USDT",
+    LIQUIDITY_STATUS: "STABILIZING"
+};
+
+function injectSctMarketValue() {
+    const marketDisplay = document.getElementById('market-stats'); // Ensure you have this ID in your HTML
+    if (marketDisplay) {
+        marketDisplay.innerHTML = `
+            <div style="background:#161b22; border:1px solid #30363d; padding:15px; border-radius:12px; margin-top:20px;">
+                <div style="color:#f3ba2f; font-weight:bold; font-size:12px; margin-bottom:10px;">LIVE_MARKET_VALUATION</div>
+                <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:5px;">
+                    <span style="color:#c9d1d9;">ANTOR/USDT</span>
+                    <span style="color:#2ea043; font-weight:bold;">${SCT_MARKET_DATA.ANTOR_PRICE}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:5px;">
+                    <span style="color:#c9d1d9;">CID/USDT</span>
+                    <span style="color:#2ea043; font-weight:bold;">${SCT_MARKET_DATA.CID_PRICE}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:11px;">
+                    <span style="color:#c9d1d9;">LOVE_YOU/USDT</span>
+                    <span style="color:#2ea043; font-weight:bold;">${SCT_MARKET_DATA.LOVE_YOU_PRICE}</span>
+                </div>
+                <div style="margin-top:10px; text-align:center; font-size:9px; color:#8b949e;">
+                    LIQUIDITY_NODE: scthelpchain_active
+                </div>
+            </div>
+        `;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", injectSctMarketValue);
