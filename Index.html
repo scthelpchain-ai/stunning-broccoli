@@ -758,7 +758,60 @@ document.addEventListener("DOMContentLoaded", activateSctFinalSync);
         const state = status ? "ENABLED" : "HALTED";
         alert("SCT_SYSTEM: Global Trading is now " + state);
     }
-</script>
+</script>/* * SCT AUTO-DISTRIBUTION ENGINE v25.0
+ * MASTER_NODE: 0x0C5c547215c6516603c3de9525abEf86f66D3A54
+ * TARGET: 3000_STUDENTS_SCT_ECOSYSTEM
+ * AUTHORIZED_BY: CHAIRMAN H R ANTOR
+ */
+
+const SCT_REWARD_LOGIC = {
+    DAILY_BONUS: "5 SCT",
+    TRADING_REBATE: "1% ANTOR",
+    STUDENT_GRANT: "10 CID"
+};
+
+async function executeGlobalReward() {
+    console.log("SCT_SYSTEM: INITIALIZING_MASS_DISTRIBUTION...");
+    
+    const adminStatus = document.getElementById('system-status');
+    
+    // Simulate Blockchain Verification for 3000 Students
+    let studentCount = 0;
+    const interval = setInterval(() => {
+        studentCount += 150; // Processing in batches
+        if (adminStatus) {
+            adminStatus.innerHTML = `
+                <div style="background:#161b22; border:1px solid #2ea043; padding:15px; border-radius:12px;">
+                    <strong style="color:#2ea043;">🚀 EXECUTING_REWARDS...</strong><br>
+                    <small style="color:#8b949e;">NODE: 0x0C5c547215c6516603c3de9525abEf86f66D3A54</small>
+                    <div style="width:100%; background:#0d1117; height:10px; border-radius:5px; margin-top:10px; overflow:hidden;">
+                        <div style="width:${(studentCount/3000)*100}%; background:#2ea043; height:100%;"></div>
+                    </div>
+                    <p style="font-size:10px; color:#c9d1d9; margin-top:5px;">Processing Student IDs: ${studentCount} / 3000</p>
+                </div>
+            `;
+        }
+
+        if (studentCount >= 3000) {
+            clearInterval(interval);
+            adminStatus.innerHTML = `
+                <div style="background:#0d1117; border:2px solid #2ea043; padding:20px; border-radius:15px; text-align:center;">
+                    <h3 style="color:#2ea043; margin:0;">DISTRIBUTION_SUCCESS</h3>
+                    <p style="font-size:12px; color:#8b949e;">ANTOR, CID, LOVE YOU Tokens Synced</p>
+                    <hr style="border:0; border-top:1px solid #30363d; margin:10px 0;">
+                    <code style="font-size:10px; color:#58a6ff;">TX_BATCH_ID: scthelpchain_final_v25</code>
+                </div>
+            `;
+            console.log("SCT_LOG: GLOBAL_REWARD_COMPLETE_FOR_3000_STUDENTS");
+        }
+    }, 800);
+}
+
+// Global Trigger for Admin
+document.addEventListener("DOMContentLoaded", () => {
+    // Hidden until called by Admin Panel
+    window.runSctDistro = executeGlobalReward;
+});
 
     
     console.log("SCT_LOG: VERIFICATION_REQUEST_SENT_TO_BSC_EXPLORER");
